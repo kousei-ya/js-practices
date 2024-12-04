@@ -1,10 +1,12 @@
+#! /usr/bin/env node
+
 for (let num = 1; num <= 20; num++) {
   if (num % 3 === 0 && num % 5 === 0) {
-    console.log("fizzbuzz");
+    console.log("FizzBuzz");
   } else if (num % 5 === 0) {
-    console.log("buzz");
+    console.log("Buzz");
   } else if (num % 3 === 0) {
-    console.log("fizz");
+    console.log("Fizz");
   } else {
     console.log(String(num));
   }
