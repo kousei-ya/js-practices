@@ -25,17 +25,17 @@ const lastDay = new Date(year, month, 0).getDate();
 let targetDay = new Date(year, month - 1);
 let dayOfWeek = targetDay.getDay();
 
-const month_alp = new Intl.DateTimeFormat("en", { month: "long" }).format(
+const monthAlphabet = new Intl.DateTimeFormat("en", { month: "long" }).format(
   targetDay,
 );
 
 const leftBrank = Math.floor(
-  (20 - (month_alp.length + String(year).length + 1)) / 2,
+  (20 - (monthAlphabet.length + String(year).length + 1)) / 2,
 );
-const rightBlank = 20 - (leftBrank + month_alp.length + String(year).length);
+const rightBlank = 20 - (leftBrank + monthAlphabet.length + String(year).length);
 
 console.log(
-  " ".repeat(leftBrank) + month_alp + " " + year + " ".repeat(rightBlank),
+  " ".repeat(leftBrank) + monthAlphabet + " " + year + " ".repeat(rightBlank),
 );
 
 console.log("Su Mo Tu We Th Fr Sa");
