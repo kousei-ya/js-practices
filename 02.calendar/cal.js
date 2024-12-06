@@ -20,34 +20,34 @@ if (argv.m === undefined) {
   month = argv.m;
 }
 
-const first_day = new Date(year, month).getDate();
-const last_day = new Date(year, month, 0).getDate();
-let target_day = new Date(year, month - 1);
-let day_of_week = target_day.getDay();
+const firstDay = new Date(year, month).getDate();
+const lastDay = new Date(year, month, 0).getDate();
+let targetDay = new Date(year, month - 1);
+let dayOfWeek = targetDay.getDay();
 
 const month_alp = new Intl.DateTimeFormat("en", { month: "long" }).format(
-  target_day,
+  targetDay,
 );
 
-const left_blank = Math.floor(
+const leftBrank = Math.floor(
   (20 - (month_alp.length + String(year).length + 1)) / 2,
 );
-const right_blank = 20 - (left_blank + month_alp.length + String(year).length);
+const rightBlank = 20 - (leftBrank + month_alp.length + String(year).length);
 
 console.log(
-  " ".repeat(left_blank) + month_alp + " " + year + " ".repeat(right_blank),
+  " ".repeat(leftBrank) + month_alp + " " + year + " ".repeat(rightBlank),
 );
 
 console.log("Su Mo Tu We Th Fr Sa");
 
-for (let blank = 0; blank < day_of_week; blank++) {
+for (let blank = 0; blank < dayOfWeek; blank++) {
   process.stdout.write("   ");
 }
 
-for (let num = first_day; num <= last_day; num++) {
+for (let num = firstDay; num <= lastDay; num++) {
   process.stdout.write(String(num).padStart(2, " "));
   process.stdout.write(" ");
-  if ((day_of_week + num) % 7 === 0) {
+  if ((dayOfWeek + num) % 7 === 0) {
     console.log();
   }
 }
