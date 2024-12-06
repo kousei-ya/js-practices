@@ -28,7 +28,15 @@ let day_of_week = target_day.getDay();
 const month_alp = new Intl.DateTimeFormat("en", { month: "long" }).format(
   target_day,
 );
-console.log("   " + month_alp, String(year));
+
+const left_blank = Math.floor(
+  (20 - (month_alp.length + String(year).length + 1)) / 2,
+);
+const right_blank = 20 - (left_blank + month_alp.length + String(year).length);
+
+console.log(
+  " ".repeat(left_blank) + month_alp + " " + year + " ".repeat(right_blank),
+);
 
 console.log("Su Mo Tu We Th Fr Sa");
 
