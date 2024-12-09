@@ -11,23 +11,23 @@ const month = argv.m=== undefined ? today.getMonth() + 1 : argv.m;
 const firstDay = new Date(year, month -1 );
 const lastDay = new Date(year, month, 0);
 
-const monthAlphabet = new Intl.DateTimeFormat("en", { month: "long" }).format(
+const monthString = new Intl.DateTimeFormat("en", { month: "long" }).format(
   firstDay,
 );
 
-const leftBrank = Math.floor(
-  (20 - (monthAlphabet.length + String(year).length + 1)) / 2,
+const leftPadding = Math.floor(
+  (20 - (monthString.length + String(year).length + 1)) / 2,
 );
-const rightBlank =
-  20 - (leftBrank + monthAlphabet.length + String(year).length);
+const rightPadding =
+  20 - (leftPadding + monthString.length + String(year).length);
 
 console.log(
-  " ".repeat(leftBrank) + monthAlphabet + " " + year + " ".repeat(rightBlank),
+  " ".repeat(leftPadding) + monthString + " " + year + " ".repeat(rightPadding),
 );
 
 console.log("Su Mo Tu We Th Fr Sa");
 
-for (let blank = 0; blank < firstDay.getDay(); blank++) {
+for (let offset = 0; offset < firstDay.getDay(); offset++) {
   process.stdout.write("   ");
 }
 
