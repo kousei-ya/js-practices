@@ -5,27 +5,14 @@ import minimist from "minimist";
 const argv = minimist(process.argv.slice(2));
 
 const today = new Date();
-let year;
-let month;
+const year = argv.y === undefined ? today.getFullYear() : argv.y;
+const month = argv.m=== undefined ? today.getMonth() + 1 : argv.m;
 
-if (argv.y === undefined) {
-  year = today.getFullYear();
-} else {
-  year = argv.y;
-}
-
-if (argv.m === undefined) {
-  month = today.getMonth() + 1;
-} else {
-  month = argv.m;
-}
-
-const firstDay = new Date(year, month);
+const firstDay = new Date(year, month -1 );
 const lastDay = new Date(year, month, 0);
-let targetDay = new Date(year, month - 1);
 
 const monthAlphabet = new Intl.DateTimeFormat("en", { month: "long" }).format(
-  targetDay,
+  firstDay,
 );
 
 const leftBrank = Math.floor(
@@ -40,14 +27,14 @@ console.log(
 
 console.log("Su Mo Tu We Th Fr Sa");
 
-for (let blank = 0; blank < targetDay.getDay(); blank++) {
+for (let blank = 0; blank < firstDay.getDay(); blank++) {
   process.stdout.write("   ");
 }
 
 for (let num = firstDay.getDate(); num <= lastDay.getDate(); num++) {
   process.stdout.write(String(num).padStart(2, " "));
   process.stdout.write(" ");
-  if ((targetDay.getDay() + num) % 7 === 0) {
+  if ((firstDay.getDay() + num) % 7 === 0) {
     console.log();
   }
 }
