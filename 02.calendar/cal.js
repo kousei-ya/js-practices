@@ -29,10 +29,10 @@ for (let offset = 0; offset < firstDay.getDay(); offset++) {
   process.stdout.write("   ");
 }
 
-for (let num = firstDay.getDate(); num <= lastDay.getDate(); num++) {
-  process.stdout.write(String(num).padStart(2, " "));
+for (let currentDate = firstDay.getDate(); currentDate <= lastDay.getDate(); currentDate++) {
+  process.stdout.write(String(currentDate).padStart(2, " "));
   process.stdout.write(" ");
-  if ((firstDay.getDay() + num) % 7 === 0) {
+  if ((firstDay.getDay() + currentDate) % 7 === 0) {
     console.log();
   }
 }
