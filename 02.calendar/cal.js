@@ -30,10 +30,12 @@ for (let offset = 0; offset < firstDay.getDay(); offset++) {
 }
 
 for (let currentDate = firstDay.getDate(); currentDate <= lastDay.getDate(); currentDate++) {
-  process.stdout.write(String(currentDate).padStart(2, " "));
-  process.stdout.write(" ");
-  if ((firstDay.getDay() + currentDate) % 7 === 0) {
-    console.log();
+  if ((firstDay.getDay() + currentDate) % 7 === 0 && currentDate !== lastDay.getDate()) {
+    process.stdout.write(`${String(currentDate).padStart(2, " ")}\n`);
+  } else if (currentDate !== lastDay.getDate()) {
+    process.stdout.write(`${String(currentDate).padStart(2, " ")} `);
+  } else {
+    process.stdout.write(`${String(currentDate).padStart(2, " ")}`);
   }
 }
 console.log();
