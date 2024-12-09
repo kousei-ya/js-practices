@@ -18,11 +18,9 @@ const monthString = new Intl.DateTimeFormat("en", { month: "long" }).format(
 const leftPadding = Math.floor(
   (20 - (monthString.length + String(year).length + 1)) / 2,
 );
-const rightPadding =
-  20 - (leftPadding + monthString.length + String(year).length);
 
 console.log(
-  " ".repeat(leftPadding) + monthString + " " + year + " ".repeat(rightPadding),
+  `${" ".repeat(leftPadding)}${monthString} ${year}`
 );
 
 console.log("Su Mo Tu We Th Fr Sa");
