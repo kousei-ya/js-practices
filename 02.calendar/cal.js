@@ -15,15 +15,15 @@ const monthString = new Intl.DateTimeFormat("en", { month: "long" }).format(
   firstDay,
 );
 
-const leftPadding = Math.floor(
+const leftPaddingLength = Math.floor(
   (20 - (monthString.length + String(year).length + 1)) / 2,
 );
 
-console.log(`${" ".repeat(leftPadding)}${monthString} ${year}`);
+console.log(`${" ".repeat(leftPaddingLength)}${monthString} ${year}`);
 
 console.log("Su Mo Tu We Th Fr Sa");
 
-for (let offset = 0; offset < firstDay.getDay(); offset++) {
+for (let dayIndex = 0; dayIndex < firstDay.getDay(); dayIndex++) {
   process.stdout.write("   ");
 }
 
