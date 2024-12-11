@@ -23,7 +23,7 @@ console.log(`${" ".repeat(leftPaddingLength)}${monthString} ${year}`);
 
 console.log("Su Mo Tu We Th Fr Sa");
 
-for (let dayIndex = 0; dayIndex < firstDay.getDay(); dayIndex++) {
+for (let i = 0; i < firstDay.getDay(); i++) {
   process.stdout.write("   ");
 }
 
