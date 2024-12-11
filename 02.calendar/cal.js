@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+import minimist from "minimist";
+
+const argv = minimist(process.argv.slice(2));
+
+const today = new Date();
+const year = argv.y ?? today.getFullYear();
+const month = argv.m ?? today.getMonth() + 1;
+
+const firstDay = new Date(year, month - 1);
+const lastDay = new Date(year, month, 0);
+
+const monthString = new Intl.DateTimeFormat("en", { month: "long" }).format(
+  firstDay,
+);
+
+const leftPaddingLength = Math.floor(
+  (20 - (monthString.length + String(year).length + 1)) / 2,
+);
+
+console.log(`${" ".repeat(leftPaddingLength)}${monthString} ${year}`);
+
+console.log("Su Mo Tu We Th Fr Sa");
+
+for (let i = 0; i < firstDay.getDay(); i++) {
+  process.stdout.write("   ");
+}
+
+for (
+  let currentDate = firstDay.getDate();
+  currentDate <= lastDay.getDate();
+  currentDate++
+) {
+  process.stdout.write(String(currentDate).padStart(2, " "));
+  if (
+    (firstDay.getDay() + currentDate) % 7 === 0 ||
+    currentDate === lastDay.getDate()
+  ) {
+    process.stdout.write("\n");
+  } else {
+    process.stdout.write(" ");
+  }
+}
