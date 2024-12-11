@@ -32,15 +32,13 @@ for (
   currentDate <= lastDay.getDate();
   currentDate++
 ) {
+  process.stdout.write(String(currentDate).padStart(2, " "));
   if (
-    (firstDay.getDay() + currentDate) % 7 === 0 &&
-    currentDate !== lastDay.getDate()
+    (firstDay.getDay() + currentDate) % 7 === 0 ||
+    currentDate === lastDay.getDate()
   ) {
-    process.stdout.write(`${String(currentDate).padStart(2, " ")}\n`);
-  } else if (currentDate !== lastDay.getDate()) {
-    process.stdout.write(`${String(currentDate).padStart(2, " ")} `);
+    process.stdout.write("\n");
   } else {
-    process.stdout.write(`${String(currentDate).padStart(2, " ")}`);
+    process.stdout.write(" ");
   }
 }
-console.log();
