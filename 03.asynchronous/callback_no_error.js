@@ -6,13 +6,13 @@ function main() {
   db.run(
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
     () => {
-      console.log("Table created.");
+      console.log("Table created!");
 
       db.run(
         "INSERT INTO books (title) VALUES (?)",
         ["SampleBook"],
         function () {
-          console.log(`Inserted record with ID: ${this.lastID}`);
+          console.log(`ID: ${this.lastID}`);
 
           db.all("SELECT id, title FROM books", (err, rows) => {
             console.log("Books:", rows);
