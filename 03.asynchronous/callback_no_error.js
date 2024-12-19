@@ -1,0 +1,34 @@
+import sqlite3 from "sqlite3";
+
+const db = new sqlite3.Database(":memory:");
+
+function main() {
+  db.run(
+    "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
+    () => {
+      console.log("Table created.");
+
+      db.run(
+        "INSERT INTO books (title) VALUES (?)",
+        ["SampleBook"],
+        function () {
+          console.log(`Inserted record with ID: ${this.lastID}`);
+
+          db.all("SELECT id, title FROM books", (err, rows) => {
+            console.log("Books:", rows);
+
+            db.run("DROP TABLE books", () => {
+              console.log("Table dropped.");
+
+              db.close(() => {
+                console.log("Database closed.");
+              });
+            });
+          });
+        },
+      );
+    },
+  );
+}
+
+main();
