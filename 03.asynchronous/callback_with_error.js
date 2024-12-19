@@ -22,10 +22,10 @@ function main() {
             }
 
             db.run("DROP TABLE books", () => {
-              console.log("Table dropped.");
+              console.log("Table dropped!");
 
               db.close(() => {
-                console.log("Database closed.");
+                console.log("Database closed!");
               });
             });
           });
