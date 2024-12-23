@@ -9,7 +9,7 @@ function main() {
       console.log("Table created!");
 
       db.run(
-        "INSERT INTO report (content) VALUES (?)",
+        "INSERT INTO reports (content) VALUES (?)",
         ["SsampleBook"],
         (err) => {
           if (err) {
