@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import MemoManager from "./memo.js";
 
 class MemoApp {
