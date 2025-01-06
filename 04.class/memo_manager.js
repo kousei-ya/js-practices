@@ -6,10 +6,11 @@ const { prompt } = Enquirer;
 class MemoManager {
   async addMemo(content) {
     try {
-      const memo = new Memo(null, content);
       const result = await db.run("INSERT INTO memos (content) VALUES (?)", [
-        memo.content,
+        content,
       ]);
+
+      const memo = new Memo(result.lastID, content);
 
       console.log(`${memo.title}が追加されました`);
     } catch (error) {
