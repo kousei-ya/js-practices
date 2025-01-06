@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import MemoManager from "./memo.js";
+import MemoManager from "./memo_manager.js";
 
 class MemoApp {
   constructor() {
