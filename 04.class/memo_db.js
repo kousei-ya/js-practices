@@ -1,7 +1,7 @@
 import sqlite3 from "sqlite3";
 sqlite3.verbose();
 
-class Database {
+class MemoDb {
   constructor() {
     this.db = new sqlite3.Database("./memos.db", (err) => {
       if (err) {
@@ -18,6 +18,25 @@ class Database {
         )
       `);
     });
+  }
+
+  async addMemo(content) {
+    const result = await this.run("INSERT INTO memos (content) VALUES (?)", [
+      content,
+    ]);
+    return { id: result.lastID, content };
+  }
+
+  async getAllMemos() {
+    return await this.all("SELECT id, content FROM memos");
+  }
+
+  async getMemoById(id) {
+    return await this.get("SELECT id, content FROM memos WHERE id = ?", [id]);
+  }
+
+  async deleteMemoById(id) {
+    await this.run("DELETE FROM memos WHERE id = ?", [id]);
   }
 
   run(sql, params = []) {
@@ -46,15 +65,6 @@ class Database {
       });
     });
   }
-
-  close() {
-    return new Promise((resolve, reject) => {
-      this.db.close((err) => {
-        if (err) reject(err);
-        else resolve();
-      });
-    });
-  }
 }
 
-export default new Database();
+export default new MemoDb();

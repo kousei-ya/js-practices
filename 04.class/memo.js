@@ -1,11 +1,22 @@
 class Memo {
-  constructor(id, content) {
-    this.id = id;
-    this.content = content;
+  constructor(database) {
+    this.database = database;
   }
 
-  get title() {
-    return this.content.replace(/\\n/g, "\n").split("\n")[0];
+  async addMemo(content) {
+    return await this.database.addMemo(content);
+  }
+
+  async listMemos() {
+    return await this.database.getAllMemos();
+  }
+
+  async getMemo(id) {
+    return await this.database.getMemoById(id);
+  }
+
+  async deleteMemo(id) {
+    await this.database.deleteMemoById(id);
   }
 }
 
