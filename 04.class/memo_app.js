@@ -1,14 +1,9 @@
 #!/usr/bin/env node
 
 import Memo from "./memo.js";
-import MemoDb from "./memo_db.js";
 import Enquirer from "enquirer";
 
 class MemoApp {
-  constructor() {
-    this.memoService = new Memo(MemoDb);
-  }
-
   async run() {
     const args = process.argv.slice(2);
 
@@ -33,13 +28,14 @@ class MemoApp {
     await new Promise((resolve) => process.stdin.on("end", resolve));
     input = input.trim();
     if (input) {
-      const memo = await this.memoService.addMemo(input);
+      const memo = new Memo(input);
+      await memo.save();
       console.log(`${this.getTitle(memo.content)}が追加されました`);
     }
   }
 
   async listMemos() {
-    const memos = await this.memoService.listMemos();
+    const memos = await Memo.all();
     if (memos.length === 0) {
       console.log("メモがありません");
     } else {
@@ -48,7 +44,7 @@ class MemoApp {
   }
 
   async readMemo() {
-    const memos = await this.memoService.listMemos();
+    const memos = await Memo.all();
     if (memos.length === 0) {
       console.log("メモがありません");
       return;
@@ -65,7 +61,7 @@ class MemoApp {
       })),
     });
 
-    const memo = await this.memoService.getMemo(parseInt(answer.memo, 10));
+    const memo = await Memo.findById(parseInt(answer.memo, 10));
     if (memo) {
       console.log("\n" + memo.content.replace(/\\n/g, "\n"));
     } else {
@@ -74,7 +70,7 @@ class MemoApp {
   }
 
   async deleteMemo() {
-    const memos = await this.memoService.listMemos();
+    const memos = await Memo.all();
     if (memos.length === 0) {
       console.log("メモがありません");
       return;
@@ -92,12 +88,13 @@ class MemoApp {
     });
 
     const memoId = parseInt(answer.memo, 10);
-    const deleted_memo_title = this.getTitle(
-      memos.find((memo) => memo.id === memoId).content,
-    );
-
-    await this.memoService.deleteMemo(memoId);
-    console.log(`${deleted_memo_title}を削除しました`);
+    const memo = await Memo.findById(memoId);
+    if (memo) {
+      await memo.delete();
+      console.log(`${this.getTitle(memo.content)}を削除しました`);
+    } else {
+      console.log("メモが見つかりませんでした");
+    }
   }
 
   getTitle(content) {

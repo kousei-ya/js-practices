@@ -1,4 +1,5 @@
 import sqlite3 from "sqlite3";
+
 sqlite3.verbose();
 
 class MemoDb {
@@ -18,25 +19,6 @@ class MemoDb {
         )
       `);
     });
-  }
-
-  async addMemo(content) {
-    const result = await this.run("INSERT INTO memos (content) VALUES (?)", [
-      content,
-    ]);
-    return { id: result.lastID, content };
-  }
-
-  async getAllMemos() {
-    return await this.all("SELECT id, content FROM memos");
-  }
-
-  async getMemoById(id) {
-    return await this.get("SELECT id, content FROM memos WHERE id = ?", [id]);
-  }
-
-  async deleteMemoById(id) {
-    await this.run("DELETE FROM memos WHERE id = ?", [id]);
   }
 
   run(sql, params = []) {
