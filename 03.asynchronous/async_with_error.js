@@ -1,10 +1,9 @@
 import sqlite3 from "sqlite3";
 import { promisifyDatabase } from "./base_functions.js";
 
-const db = new sqlite3.Database(":memory:");
-const promisifiedDb = promisifyDatabase(db);
-
 async function main() {
+  const db = new sqlite3.Database(":memory:");
+  const promisifiedDb = promisifyDatabase(db);
   await promisifiedDb.run(
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
