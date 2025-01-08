@@ -6,7 +6,7 @@ function main() {
   db.run(
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
     () => {
-      console.log("Table created!");
+      console.log("books' table was successfully created.");
 
       db.run(
         "INSERT INTO reports (content) VALUES (?)",
@@ -22,10 +22,12 @@ function main() {
             }
 
             db.run("DROP TABLE books", () => {
-              console.log("Table dropped!");
+              console.log("The 'books' table was successfully dropped.");
 
               db.close(() => {
-                console.log("Database closed!");
+                console.log(
+                  "The database connection has been successfully closed.",
+                );
               });
             });
           });

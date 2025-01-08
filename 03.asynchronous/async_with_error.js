@@ -8,7 +8,7 @@ async function main() {
   await pdb.run(
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
-  console.log("Table created!");
+  console.log("The 'books' table was successfully created.");
 
   try {
     await pdb.run("INSERT INTO reports (title) VALUES (?)", ["SampleBook"]);
@@ -23,10 +23,10 @@ async function main() {
   }
 
   await pdb.run("DROP TABLE books");
-  console.log("Table dropped!");
+  console.log("The 'books' table was successfully dropped.");
 
   await pdb.close();
-  console.log("Dataabase closed!");
+  console.log("The database connection has been successfully closed.");
 }
 
 main();

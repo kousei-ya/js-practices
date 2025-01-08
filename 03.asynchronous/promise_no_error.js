@@ -10,7 +10,7 @@ function main() {
       "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
     )
     .then(() => {
-      console.log("Table created!");
+      console.log("books' table was successfully created.");
       return pdb.run("INSERT INTO books (title) VALUES (?)", ["SampleBook"]);
     })
     .then((result) => {
@@ -22,11 +22,11 @@ function main() {
       return pdb.run("DROP TABLE books");
     })
     .then(() => {
-      console.log("Table dropped!");
+      console.log("The 'books' table was successfully dropped.");
       return pdb.close();
     })
     .then(() => {
-      console.log("Database closed!");
+      console.log("The database connection has been successfully closed.");
     });
 }
 

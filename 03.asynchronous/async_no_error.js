@@ -8,7 +8,7 @@ async function main() {
   await pdb.run(
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
-  console.log("Table create!");
+  console.log("The 'books' table was successfully created.");
 
   const result = await pdb.run("INSERT INTO books (title) VALUES (?)", [
     "SampleBook",
@@ -19,10 +19,10 @@ async function main() {
   console.log("Books:", rows);
 
   await pdb.run("DROP TABLE books");
-  console.log("Table dropped!");
+  console.log("The 'books' table was successfully dropped.");
 
   await pdb.close();
-  console.log("Database closed!");
+  console.log("The database connection has been successfully closed.");
 }
 
 main();
