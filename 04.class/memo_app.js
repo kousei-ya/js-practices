@@ -101,7 +101,7 @@ class MemoApp {
   }
 
   getTitle(content) {
-    return content.replace(/\\n/g, "\n").split("\n")[0];
+    return content.split("\n")[0];
   }
 }
 
