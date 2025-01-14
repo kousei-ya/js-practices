@@ -49,4 +49,4 @@ class MemoDb {
   }
 }
 
-export default new MemoDb();
+export default MemoDb;

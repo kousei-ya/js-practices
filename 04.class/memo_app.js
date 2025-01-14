@@ -1,9 +1,15 @@
 #!/usr/bin/env node
 
 import Memo from "./memo.js";
+import MemoDb from "./memo_db.js";
 import Enquirer from "enquirer";
 
 class MemoApp {
+  constructor() {
+    this.db = new MemoDb();
+    Memo.init(this.db);
+  }
+
   async run() {
     const args = process.argv.slice(2);
 
