@@ -3,24 +3,33 @@ export function promisifyDatabase(db) {
     run(sql, params = []) {
       return new Promise((resolve, reject) => {
         db.run(sql, params, function (err) {
-          if (err) reject(err);
-          else resolve(this);
+          if (err) {
+            reject(err);
+          } else {
+            resolve(this);
+          }
         });
       });
     },
     all(sql, params = []) {
       return new Promise((resolve, reject) => {
         db.all(sql, params, (err, row) => {
-          if (err) reject(err);
-          else resolve(row);
+          if (err) {
+            reject(err);
+          } else {
+            resolve(row);
+          }
         });
       });
     },
     close() {
       return new Promise((resolve, reject) => {
         db.close((err) => {
-          if (err) reject(err);
-          else resolve();
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
         });
       });
     },
