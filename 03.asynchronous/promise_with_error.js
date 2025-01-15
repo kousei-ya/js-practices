@@ -16,8 +16,6 @@ function main() {
     })
     .catch((err) => {
       console.error(err.message);
-    })
-    .then(() => {
       return promisifiedDb.all("SELECT content FROM books");
     })
     .catch((err) => {
