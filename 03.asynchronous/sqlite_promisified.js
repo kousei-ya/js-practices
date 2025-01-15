@@ -13,11 +13,11 @@ export function promisifyDatabase(db) {
     },
     all(sql, params = []) {
       return new Promise((resolve, reject) => {
-        db.all(sql, params, (err, row) => {
+        db.all(sql, params, (err, rows) => {
           if (err) {
             reject(err);
           } else {
-            resolve(row);
+            resolve(rows);
           }
         });
       });
