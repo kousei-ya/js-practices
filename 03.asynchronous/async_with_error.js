@@ -14,13 +14,21 @@ async function main() {
       "SampleBook",
     ]);
   } catch (err) {
-    console.error(err.message);
+    if (err.message.includes("no such table")) {
+      console.error("Error: The 'reports' table does not exist.");
+    } else {
+      throw err;
+    }
   }
 
   try {
     await promisifiedDb.all("SELECT content FROM books");
   } catch (err) {
-    console.error(err.message);
+    if (err.message.includes("no such column")) {
+      console.error("Expected error: The column 'content' does not exist.");
+    } else {
+      throw err;
+    }
   }
 
   await promisifiedDb.run("DROP TABLE books");
