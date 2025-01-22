@@ -4,7 +4,7 @@ function main() {
   const db = new sqlite3.Database(":memory:");
   db.run(
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
-    (_) => {
+    () => {
       console.log("The 'books' table was successfully created.");
 
       db.run(
@@ -16,7 +16,7 @@ function main() {
           db.all("SELECT id, title FROM books", (_, rows) => {
             console.log("Books:", rows);
 
-            db.run("DROP TABLE books", (_) => {
+            db.run("DROP TABLE books", () => {
               console.log("The 'books' table was successfully dropped.");
 
               db.close(() => {
