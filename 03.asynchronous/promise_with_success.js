@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-import { promisifyDatabase } from "./sqlite_promisified.js";
+import { promisifyDatabase } from "./sqlite_promisifier.js";
 
 function main() {
   const db = new sqlite3.Database(":memory:");
