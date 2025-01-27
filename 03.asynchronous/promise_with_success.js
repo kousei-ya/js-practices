@@ -10,13 +10,13 @@ function main() {
       "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
     )
     .then(() => {
-      console.log("books' table was successfully created.");
+      console.log("The 'books' table was successfully created.");
       return promisifiedDb.run("INSERT INTO books (title) VALUES (?)", [
         "SampleBook",
       ]);
     })
     .then((result) => {
-      console.log(`ID:${result.lastID}`);
+      console.log(`ID: ${result.lastID}`);
       return promisifiedDb.all("SELECT id, title FROM books");
     })
     .then((rows) => {
