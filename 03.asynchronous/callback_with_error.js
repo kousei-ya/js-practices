@@ -6,7 +6,7 @@ function main() {
   db.run(
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
     () => {
-      console.log("books' table was successfully created.");
+      console.log("The 'books' table was successfully created.");
 
       db.run(
         "INSERT INTO reports (content) VALUES (?)",
