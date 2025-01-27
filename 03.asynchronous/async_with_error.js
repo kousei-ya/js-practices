@@ -16,7 +16,7 @@ async function main() {
     ]);
   } catch (err) {
     if (err.message.includes("no such table")) {
-      console.error("Error: The 'reports' table does not exist.");
+      console.error(err.message);
     } else {
       throw err;
     }
@@ -26,7 +26,7 @@ async function main() {
     await promisifiedDb.all("SELECT content FROM books");
   } catch (err) {
     if (err.message.includes("no such column")) {
-      console.error("Expected error: The column 'content' does not exist.");
+      console.error(err.message);
     } else {
       throw err;
     }
