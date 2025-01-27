@@ -15,7 +15,11 @@ async function main() {
       "SampleBook",
     ]);
   } catch (err) {
-    if (err.message.includes("no such table")) {
+    if (
+      err instanceof Error &&
+      typeof err.message === "string" &&
+      err.message.includes("no such table")
+    ) {
       console.error(err.message);
     } else {
       throw err;
@@ -25,7 +29,11 @@ async function main() {
   try {
     await promisifiedDb.all("SELECT content FROM books");
   } catch (err) {
-    if (err.message.includes("no such column")) {
+    if (
+      err instanceof Error &&
+      typeof err.message === "string" &&
+      err.message.includes("no such column")
+    ) {
       console.error(err.message);
     } else {
       throw err;
