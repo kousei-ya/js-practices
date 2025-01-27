@@ -4,6 +4,7 @@ import { promisifyDatabase } from "./sqlite_promisified.js";
 function main() {
   const db = new sqlite3.Database(":memory:");
   const promisifiedDb = promisifyDatabase(db);
+
   promisifiedDb
     .run(
       "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
